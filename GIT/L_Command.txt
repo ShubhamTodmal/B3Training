@@ -1,0 +1,37 @@
+List of Commands
+
+
+1.  pwd:						print the path or name of cuurent/working directory.
+
+2.  mkdir:						used to create new directory.
+
+3.  cd:						used to change the current working directory.
+
+4.  git config:					used to set Git configuration values on a global or local project level.
+
+5.  git config --global user.name "_Name_":		Set user name.
+
+6.  git config --global user.email "_Email_":		Set email address.
+
+7.  git config --global --list:				Showing system, global and local configs.
+
+8.  git clone __address__:				It is Git Command Line Utility which is used to target an existing  repository and create a clone or copy of the 							target repository (Clone a local or remote repository).
+
+9.  ls:						List the information about the files in current directory(by default).
+
+10. git status:					It display states of the repository and staging area. Allow us to see the tracked, untracked files and changes.
+
+11. git add __file name__:				Adds a change in working directory to staging area. It tells we want to  include updates to a particular file in the 							next commit.
+
+12. cat __file name__:				it display all content of the file.
+
+13. git --help: 					If having trouble remembering commands or options for commands
+
+14. git commit:					It used to move files from the staging area to a commit. 
+
+15. git commit -m:					-m stand for message, is used to add a commit message to commit.
+
+16. git push:					It is used to uplaod local repository content to a remote repository.
+
+17. git push origin master:				"Origin" is a shorthand name for the remote repository that a project  was originally cloned from.
+						 "master" stand for main branch.
