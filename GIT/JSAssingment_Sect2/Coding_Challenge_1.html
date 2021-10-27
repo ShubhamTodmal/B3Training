@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const mass_Mark = 78;
+        const heigh_Mark = 1.69;
+        const mass_John = 92;
+        const heigh_John = 1.95;
+
+        /* const mass_Mark = 95;
+         const heigh_Mark = 1.88;
+         const mass_John = 85;
+         const heigh_John = 1.76;*/
+
+        let BMI_Mark = mass_Mark / (heigh_Mark ** 2);
+        let BMI_John = mass_John / (heigh_John ** 2);
+
+        console.log(BMI_Mark, BMI_John);
+        if (BMI_Mark > BMI_John)
+            console.log(BMI_Mark + " is greater");
+        else
+            console.log(BMI_John + " is greater");
+
+    </script>
+</body>
+
+</html>
