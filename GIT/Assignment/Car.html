@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Info</title>
+    <link rel="stylesheet" href="Car.css">
+</head>
+<body>
+
+        <h1 style="text-align: center; top: 500px;">Car List</h1>
+        <table class="table" id="display">
+           <thead>
+                <tr>
+                <th>Model No</th>
+                <th>Car Name</th>
+                <th>Company Name</th>
+                <th>Engine Type</th>
+                <th>Milage</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <button class="button">new Entry</button>
+        <div class="form hidden"  style="padding-left: 50px; padding-top: 50px;">
+             <form id="carform">
+              <div class="mb-3 row" style="padding-top: 20px;">
+                <label>Model No:</label>
+                  <input type="text"  id="modelno" placeholder="AB48" style="margin-left: 50px;">
+              </div>
+              <div class="mb-3 row" style="padding-top: 20px;">
+                <label>Car Name:</label>
+                  <input type="text"  id="carname" placeholder="Swift" style="margin-left: 50px;">
+              </div>
+              <div class="mb-3 row" style="padding-top: 20px;">
+                <label >Company Name:</label>
+                  <input type="text" id="companyname" 
+                 placeholder="Mahindra" style="margin-left: 10px;">
+              </div>
+              <div class="mb-3 row" style="padding-top: 20px;">
+                <label >Engine Type:</label>
+                <input type="text" id="Etype" 
+                placeholder="petrol,diesel" style="margin-left: 35px;">
+              </div>
+              <div class="mb-3 row" style="padding-top: 20px;">
+                <label>Milage:</label>
+                  <input type="Number" id="milage" placeholder="30km\l" style="margin-left: 70px;">
+              </div>
+
+              <input type="submit" style="margin-left: 20%; margin-top: 100px; height: 40px; width: 100px; background: rgb(12, 212, 102);" class="submit" >
+              <input type="submit" value="Update" style="margin-left: 20%; margin-top: 100px; height: 40px; width: 100px; background: rgb(12, 212, 102);" class="  update hidden" >
+            </form>
+        </div>
+        <div class="overlay hidden"></div>
+<script src="Car.js"></script>
+</body>
+</html>
