@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Data Structures and Modern Operators</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      h1 {
+        font-family: sans-serif;
+        font-size: 50px;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+        color: white;
+      }
+      button {
+        width: 50px;
+        height: 20px;
+        margin: 10px;
+      }
+      textarea {
+        width: 300px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Data Structures and Modern Operators</h1>
+    <script>
+
+        // set create using "new Set(...values....)"" 
+        const game = new Set(['fe','vc','aev','fe']);
+        console.log(game);
+
+        // size of set
+        console.log(game.size);// even if there is 4 element it shows size 3 cause set avoid or drop duplicate data
+
+        // check value is in set or not
+        console.log(game.has('fe'));
+        console.log(game.has('gfc')); 
+
+        //add and delete value in set
+        game.add('shubh');
+        console.log(game);
+        game.delete('fe');
+        console.log(game);
+
+        // specially sets are used for avoid duplicate value
+        game.add('shubh');
+        console.log(game);//here we add shubh value 2 times still it shows only one time
+
+        //looping set or we can say set also iterable
+        for(k of game)
+        {
+            console.log(k);
+        }
+
+        // clear whole set
+        //game.clear();
+
+        // set using array
+        const arr = ['setter','spiker','setter','defender','libro','spiker'];
+        console.log(arr);// here setter and spiker has duplicate
+        const position = new Set(arr);
+        console.log(position);// here we create set and all dupicate values droped
+
+        // set to array conversion
+        const arr2 = [position];
+        console.log(arr2);// here set not converted into array cause it store set inside of new array instead coverting it in array
+
+        const arr3 = [...position];
+        console.log(arr3);// here coversion is succefully done, cause first we unpack our set and then put in array
+
+        // string also a iterable using set
+        const a =new Set('str','hi');
+        console.log(a);// it creates values of character through a single string 
+        const  b = new Set('hii','bye');
+        console.log(b);// here it create only 1st string values cause it not take more string values than 1 and here we write 'hii' but set takes only 'hi' as we know it avoid repeated value
+
+       
+    </script>
+  </body>
+</html>
