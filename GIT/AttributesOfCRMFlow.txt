@@ -1,0 +1,53 @@
+
+							CRM Flow
+LEAD:-
+	1)  Activity on site
+	2)  Address
+	3)  Name
+	4)  Email
+	5)  Phone no.
+	6)  Source
+	7)  Current Using Service
+	8)  Interest
+
+APPORTUNITY:-
+	1)  Interest in specific product
+	2)  Contact
+	3)  Probability
+	4)  Need
+	5)  Indivisual or Committe
+	6)  Name
+	7)  Priority
+	8)  ProcessId
+	9) Proposal
+
+ACCOUNT:-
+	1)  Name
+	2)  Email
+	3)  Id
+	4)  Active Service
+	5)  Activies
+	6)  Account Activate Date
+	7)  Created By
+	8)  Status
+	9)  Handle By
+
+CONTACT:-
+	1)  Contact
+	2)  Name
+	3)  Address
+	4)  Service Status
+	5)  Feedback
+	6)  Review
+	7)  Service Deal
+
+TASK:-
+	1)  Store Contact Data
+	2)  Track Deal
+	3)  Task Owner
+	4)  Subject
+	5)  Due Date
+	6)  Remainder
+	7)  Account Type
+	8)  Task Priority
+	9)  Status
