@@ -1,0 +1,42 @@
+-- Database: owner_pet
+
+-- DROP DATABASE owner_pet;
+
+CREATE DATABASE owner_pet
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+	
+-- 1 	insert data in owners table
+		insert into owners (f_name,l_name,city,state,email)
+		values ('shubh','tod','nagar','mh','st@gmail.com'),('s','t','jeur','jk','ss@gmail.com'),
+		('shubham','todmal','pune','mh','shto@gmail.com'),('karn','surya','hastinapur','bh','ks@gmail.com'),
+		('hanuman','anajani','van','dv','ha@gmail.com'),(null,'maxwell',null,'ca','max@gmail.com');
+		
+		select * from owners;
+		
+		
+-- 2	insert data into pets
+		insert into pets (species,fullname,age,owner_id)
+		values ('dog','rex',6,1),('rabbit','fulffy',2,5),('cat','tom',0,2),
+		('mouse','jerry',2,2),('dog','biggles',4,2),('tortoise','squirtle',42,3);
+		
+		select * from pets;
+		
+		
+-- 3	update fluffy the rabbite age to 3
+		update pets
+		set age = 3 where fullname='fluffy';	
+		
+		select * from pets;
+
+
+-- 4	delete Mr. Maxwell from the owners table
+		delete from owners
+		where l_name = 'maxwell';
+		
+		select * from owners;

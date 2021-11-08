@@ -1,0 +1,46 @@
+-- Database: owner_pet
+
+-- DROP DATABASE owner_pet;
+
+CREATE DATABASE owner_pet
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+	
+-- 1  create databade
+	
+	-- 2  create owner table
+	create table owners(
+		owner_id serial primary key,
+		f_name varchar(20),
+		l_name varchar(20),
+		city varchar(30),
+		state char(2)
+	);
+	
+	select * from owners;
+	
+	-- 3  create pet table with foriegn key(owners)
+	create table pets(
+		pet_id serial primary key,
+		species varchar(30),
+		fullname varchar(30),
+		age int,
+		owner_id int references owners(owner_id)
+	);
+		select * from pets;
+		
+	-- 4  add email column to owners table
+	alter table owners
+	add column email varchar(40) unique;
+	
+	-- 5  change data type of last name column for owners to varchar(50)
+	alter table owners
+	alter column l_name type varchar(50);
+
+	
+	
