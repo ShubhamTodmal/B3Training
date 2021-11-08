@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JavaScript Fundamentals – Part 2</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to top left, #28b487, #7dd56f);
+        }
+
+        h1 {
+            font-family: sans-serif;
+            font-size: 50px;
+            line-height: 1.3;
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript Fundamentals – Part 2</h1>
+    <script>
+
+        const neighbours = ['Nepal', 'Bhutan', 'SriLanka', 'Sweden'];
+        console.log(neighbours);
+
+        // Add a new value
+        neighbours.push('Utopia');
+        // to find length of array using last entry
+        //const enter = neighbours.push('Utopia');
+        //console.log(enter);
+
+        // add value at 1st position
+        // neighbours.unshift('Utopia');
+        console.log(neighbours);
+
+        // remove a last entered value
+        neighbours.pop();
+        // delete value from 1st position
+        //const d = neighbours.shift();
+        // to find last deleted value
+        //console.log(d);
+        console.log(neighbours);
+
+        // check value is included or not
+        if (neighbours.includes('Germany'))
+            console.log("Germany is at border of India");
+        else
+            console.log("Propably not a Asian country");
+
+
+        // Change name of after finding index
+        const ind = neighbours.indexOf('Sweden');
+        console.log(ind);
+        neighbours[ind] = "Republic of Sweden";
+        console.log(neighbours);
+    </script>
+</body>
+
+</html>

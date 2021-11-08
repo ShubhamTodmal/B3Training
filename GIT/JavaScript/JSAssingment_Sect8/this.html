@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>How JavaScript Works Behind the Scenes</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      h1 {
+        font-family: sans-serif;
+        font-size: 50px;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>How JavaScript Works Behind the Scenes</h1>
+    <script>
+'use strict';
+// this pointed to the value who call it
+        const jon={
+            name : 'jon',
+            year : 2022,
+
+            calage : function()
+            { 
+                // for normal function call, this pointed to object or undefined
+                console.log(this);
+                console.log(this.name);
+                console.log(this.year - 1999);
+
+                const hi = function()
+                {
+                    console.log(this);
+                   // console.log(this.name);
+                    //console.log(this.year - 1999);
+                    //as its pointed to windows it cant access jon's data
+                }
+                // but if we want to use hi() with proper output so we can store this outside of function and now we can use that variable isntead of this
+
+                hi();// here this is pointed to window/parent cause it is not called by any object,  it just normal call
+
+                const hii = () =>
+                {
+                    console.log(this);
+                    console.log(this.name);
+                console.log(this.year - 1999);
+                }
+                hii();// here this is pointed to jon cause as rules in arrowfunction this is pointed to parent. so it inherit parent this and access its value
+                 
+            },
+            you : () =>
+            {
+                // for arrow function this is pointed to parent scope means windows
+                console.log(this);
+            }
+        };
+        jon.calage();
+        jon.you();
+
+         const shubh = {
+             name : "shubham",
+             year : 2012,
+         };
+         shubh.calage = jon.calage;
+         shubh.calage();
+
+         const me = function(a,b)
+         {
+           console.log(arguments);
+           return a+b;
+         };
+         me(1,3);
+         me(1,4,7,8);
+         //here in normal function expression we can increase arguments than actual parameter it also ok with function declaration. And we can also use 'arguments' as a 
+         
+         const m = (a,b) => {
+           //console.log(arguments); // here 'arguments' key word not working
+           return a+b;
+         };
+        console.log(m(1,4));
+    </script>
+  </body>
+</html>

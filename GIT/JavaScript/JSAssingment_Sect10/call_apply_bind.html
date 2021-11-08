@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>A Closer Look at Functions</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      h1 {
+        font-family: sans-serif;
+        font-size: 50px;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+        color: white;
+      }
+      .buy,
+      .poll {
+        font-size: 1.6rem;
+        padding: 1rem 2rem;
+        position: absolute;
+        top: 2rem;
+      }
+      .buy {
+        left: 2rem;
+      }
+      .poll {
+        right: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>A Closer Look at Functions</h1>
+    <button class="buy">Buy new plane 🛩</button>
+    <button class="poll">Answer poll ⁉️</button>
+    <script>
+
+        const AirIndia = {
+            airline : 'Airindia',
+            code : 'AI',
+            booking : [],
+            //for function in object we can use
+            //book : function(){} or
+            book(FlightNum,name){
+                console.log(`${name} booked seat on ${this.airline} flight ${this.code}${FlightNum}`);
+                this.booking.push({
+                    flight : `${this.code}${FlightNum}`,
+                    name
+                });
+            },
+        };
+
+        AirIndia.book(56,'shubham');
+        console.log(AirIndia);// here we see this in book is pointed to AirIndia object cause this is the one who calling book function
+
+        const Spice = {
+            airline : 'Spice',
+            code : 'SP',
+            booking : [],
+        };
+        const KingFisher = {
+            airline : 'KingFisher',
+            code : 'KF',
+            booking : [],
+        };
+
+        // Note (but remeber we have to same proepties name of formate for all object)
+
+        //here write a book mehtod will halt the dry code so we store book method in var
+        const book = AirIndia.book;// here AirIndia.book is methos of AirIdian but we know function in JS are value so we store this in book var and this is 1st Class function
+
+        //book(15,'me');// here even book copy AirIndia book method still it not point to AirIndia cause now its a normal function which is not call by any object hence this not work here
+
+        // but if we want to work book but with both object then we also has to tell this point to which object so we have 3 methods call(),apply(),bind()
+
+
+
+        //let try call()*****************************************
+        book.call(Spice,789,'Todmal');//here 1st parameter is object so this will point to that object and rest parameter are book fucntion parameter
+        //call simply create new this for object that pass
+        console.log(Spice);// here we this pointed to Spice and new booking data is stored
+             //as same we can do for AirIndia
+             book.call(AirIndia,789,'Todmal');
+            console.log(AirIndia);
+
+
+
+
+        // let try apply()***************************************
+        // here apply same as the call but instead of function parameter it accept it in array but object as normal
+        const arr = [789456,'Shubh'];
+        book.apply(Spice,arr);
+        console.log(Spice);// here we see data added
+        //or we can pass array directly in parameter
+        book.apply(Spice,[0012,'Karan']);
+        console.log(Spice);// here we see 3rd data also added
+        // note apply not majoly use cause we have call() wich is better that apply. if we have data in array then still we use call() just destruct that array in parameter like this:- ...arr
+
+
+
+
+        // try bind*********************************************
+        const king1 = book.bind(KingFisher);// here we see bind() not directly call function.actually it return book function and accept 1 parammeter as object on which we have to use that book function
+        // so we store that bind fucntion in var King1 and call on KingFisher object so here this pointing to KinghFisher and Data added in KingFisher object
+        king1(2001,'Maha');
+        console.log(KingFisher);
+
+        const King245 = book.bind(KingFisher,45);// here we take 2 parameter 1st is object and 2nd is flight no. here it same as call() but we not defie name so this bind is only for 45 no KingFisher flight
+        King245('hii');//here we dont need to pass fligth no cause we alreday pass it in bind() we can do same for name too
+        console.log(KingFisher);
+
+        const King2me = book.bind(KingFisher,45,'me');
+        King2me();
+        console.log(KingFisher);
+
+        // this is not proper way
+        //const King2def = book.bind(KingFisher,undefined,'me');
+        //King2def(100);
+        //console.log(KingFisher);
+        // here we see we cant skiped parameter we see last time if we want to skiped we use undefined but if we declare here undefined to flight no then it take value as undefine even when we call that function with difined filght no 100 
+        // we declare undefined only for default value function
+
+        // this is with event listner
+        Spice.planes = 20;
+        Spice.buyPlane = function(){
+            console.log(this);
+            this.planes++;
+            console.log(this.planes);
+        }
+
+        document.querySelector('.buy').addEventListener('click',Spice.buyPlane);// when we click on buy we get that here this not pointing to Spice it actually pointing to dOM element button. cause we know at event listner this is pointed to the elemnt on whome event handler apply
+        //means Spice.buyPlane is handler and iyt attached to button so this wiil point to buton
+
+        // so for tell this to point Spice we can do like
+ //       Spice.buyPlane();//now declare it and then call event listner. so here this ponted to spice
+ //       document.querySelector('.buy').addEventListener('click',Spice.buyPlane);// here now we got this is pointed to Spice object cause before event listener we call object.method and this pointed that object so if we call that method it this is still pointing to object instead f button
+        
+        // but this is bad practice we have to mannually tell this whom to point cause all time we dont know how many time and which book going to need
+        //so which is best call() or bind() for that situation. so bind is best cause call() calls the method and dont want to call it
+        document.querySelector('.buy').addEventListener('click',Spice.buyPlane.bind(Spice));// so simply link bind here and pass object which we want
+
+        //partial application***************************************
+        //means pass fix values to parameter as we do above at bind declare flight no fix 
+        const tax = (rate,value) =>value + value*rate;
+        console.log(tax(0.1,200));
+        
+        const InTax = tax.bind(null, 0.23);//here null used cause here this keyword not used anywhere and we noy=t pointing to any things so null is used and then we fix the value of rate to 23
+        //InTax = val => val + val*0.23 this is what bind gives us Intax function like this
+         console.log(InTax(100));// here we see we got ans cause bind create InTax to function as like tax and here we also fix rate value
+         //but remember oreder must be same
+         
+         //we can do this using returnng function like
+         const Addtax = function(rate)
+         {
+             return function(value)
+             {
+                 return value+value*rate;
+             }
+         } 
+         const calTax = Addtax(0.23);
+         console.log(calTax(100));// so this is function return function
+
+
+
+
+    </script>
+  </body>
+</html>

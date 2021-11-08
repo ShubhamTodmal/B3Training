@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JavaScript Fundamentals – Part 2</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to top left, #28b487, #7dd56f);
+        }
+
+        h1 {
+            font-family: sans-serif;
+            font-size: 50px;
+            line-height: 1.3;
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript Fundamentals – Part 2</h1>
+    <script>
+        // Declaratin function
+        console.log("Using Declaration function");
+        function percentageOfWorld1(population) {
+            return (population / 7900) * 100;
+        }
+
+        const d1 = percentageOfWorld1(1441);
+        const d2 = percentageOfWorld1(1441);
+        const d3 = percentageOfWorld1(1441);
+
+        console.log(d1); console.log(d2); console.log(d3);
+
+        console.log("Using Expression function");
+        // Expression function
+        const percentageOfWorld2 = function (population) {
+            return (population / 7900) * 100;
+        }
+        const e1 = percentageOfWorld2(2405);
+        const e2 = percentageOfWorld2(5405);
+        const e3 = percentageOfWorld2(1405);
+        console.log(e1); console.log(e2); console.log(e3);
+
+    </script>
+</body>
+
+</html>

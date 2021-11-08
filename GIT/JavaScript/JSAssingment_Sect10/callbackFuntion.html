@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>A Closer Look at Functions</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      h1 {
+        font-family: sans-serif;
+        font-size: 50px;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+        color: white;
+      }
+      .buy,
+      .poll {
+        font-size: 1.6rem;
+        padding: 1rem 2rem;
+        position: absolute;
+        top: 2rem;
+      }
+      .buy {
+        left: 2rem;
+      }
+      .poll {
+        right: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>A Closer Look at Functions</h1>
+    <button class="buy">Buy new plane 🛩</button>
+    <button class="poll">Answer poll ⁉️</button>
+    <script>
+
+        // these are the fisrt class function cause they are value
+        const lower = function(str)
+        {
+            return str.replaceAll(' ','').toLowerCase();
+        };
+
+        const upperfirst = function(str)
+        {
+            const [first,...other] = str.split(' ');
+            return[first.toUpperCase(), ...other].join(' ');
+        };
+
+        
+        // this is higher order function cause this function calling another function
+        const transform = function(str,fn)
+        {
+            console.log(`original string: ${str}`);
+            console.log(`Afetr tranformed: ${fn(str)}`);
+            console.log(`Transformed by: ${fn.name}`)//this shows function name that called here;
+        }
+
+        transform('my name is shubham',lower);//here we see we not calling lower function we just pass the value of lower and we callback it inside the higher order function transform
+
+        transform('my name is shubham',upperfirst);//here we call upperfirst value and callback it inside the other function
+
+        const hi = function()
+        {
+            console.log('hiiiii');
+        };
+        ['ss','d','sd'].forEach(hi);// we can see there is 3 times hiiii cause we have 3 element and for each element it print hii so here we callback hi function on each element
+
+    </script>
+  </body>
+</html>

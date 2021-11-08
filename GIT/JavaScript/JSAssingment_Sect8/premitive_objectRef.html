@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>How JavaScript Works Behind the Scenes</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to top left, #28b487, #7dd56f);
+      }
+      h1 {
+        font-family: sans-serif;
+        font-size: 50px;
+        line-height: 1.3;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>How JavaScript Works Behind the Scenes</h1>
+    <script>
+
+        // remember const only work for the primetive(int,bool,char,etc) not for object(array,function,etc)
+
+        // premetive type
+        let age = 20;
+        let myage = age;
+        console.log(age);  //20
+        console.log(myage);//20
+        age = 31;
+        console.log(age);// 31
+        console.log(myage);//20
+
+        myage = 50;
+        console.log(age); //31
+        console.log(myage);//50
+        // all happened in call stack means statment execution way
+        /* here this happed cause age is point to memory location which store value 20, then myage point to age so it also point to memory location who store 20.
+        now when we reassign age to 31 it not change the old memory location value instead it create new memory for value 31. So now age is point to new memory location who store 31 and myage pooint to old memory location who store 20*/
+
+        // object type
+        // all happened in heap memory
+        /* here it not work same as above premitive type cause. when object create it create a memory in call stack then that memory location in call stack point to a heap memory which also create when object create where actual values store.
+        Then nextme = me, so nextme also point to a call stack memory of me. Then as we know it also point to heap memory so both point to same reference.
+        but now when we change value it not create new memory in call stack as premitive, instead it goes to heap memory then find that value and change (for changing a value heap not create new momory) as both point to same memory and that memory point to same heap memory even when 1 of them changed value we can see change in other too*/
+        const me ={
+            name : 'shubh',
+            age : 22
+        }
+        const nextme = me;
+        console.log(me);
+        console.log(nextme);
+        me.age = 50;
+        console.log(me);
+        console.log(nextme);
+        nextme.age = 1;
+        console.log(me);
+        console.log(nextme);
+
+
+        //
+        const jes = {
+            fname : 'jess',
+            lname : 'willam',
+            age : 20
+        }
+        const aftermarriagejes = jes;
+        console.log('before changing');
+        console.log(jes);
+        console.log(aftermarriagejes);
+
+        console.log('after changing name');
+        aftermarriagejes.lname = 'stary';
+        console.log(jes);
+        console.log(aftermarriagejes);
+
+        //aftermarriagejes = {}; // here not happened this it will give error. cuase we know object not work as const we think but it not will go through call stack there it already have reference to memory and there it is constant so it not assign new memory in stack, but can chage value in heap cause heap not create new memory it just update value
+        // but if use let instead const then it will work as assign new stack memory and lost old references in stack and heap memory
+
+        // copying object
+        const jes2 = {
+            fname : 'jess',
+            lname : 'willam',
+            age : 20,
+            frend :['me','jen','st']
+        }
+
+        const jescopy=Object.assign({},jes2);
+        console.log(jescopy,jes2);
+        jescopy.lname = 'may';
+        console.log(jescopy,jes2);
+        // here change in one not deflect in other cause here we create shallow copy of object as jesscopy and copy values of jes2 instead of assign jescopy = jes2 cause then both assign to same memory
+        // shallow copy is only craete copy but if we have inner object also then it still assing to same value or heap memory example as below
+
+        console.log(jes2);
+        console.log(jescopy);
+        jescopy.frend.push('hiii');
+        console.log(jescopy);
+        console.log(jes2);
+        // here we see if we create new inner object in one it will no problem before copy it create copy if we create after copy it only create in one who create it and not reflet in other
+        // if before copy we cerate inner object then change in one object also reflect in another
+        // here all we see Object.assign create shallow copy not a deep clone
+
+    </script>
+  </body>
+</html>
