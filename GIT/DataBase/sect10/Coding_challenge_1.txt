@@ -1,0 +1,29 @@
+-- Database: movie_data_clone
+
+-- DROP DATABASE movie_data_clone;
+
+CREATE DATABASE movie_data_clone
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+	
+-- 1	select the director 1st and last names and movie name in upper case
+		select upper(d.first_name),upper(d.last_name),upper(m.movie_name)
+		from director d
+		join movie m on d.director_id = m.director_id;
+		
+-- 2	select the 1st,last name in initial capitalisation format, of all the actor who have starred in a chinese or korean movie
+		select  distinct initcap(a.first_name),initcap(a.last_name) from actor a
+		join movie_actor ma on ma.actor_id = a.actor_id
+		join movie m on m.movie_id = ma.movie_id
+		where movie_lang in('Chinese','Korean');--there are duplicate so use distinct
+
+-- 3	retrieve reversed 1st,last names of each director and the 1st three character of their nationality
+		select reverse(first_name),reverse(last_name),left(nationality,3) from director;
+
+-- 4	retrieve the initial of each director and display it in one column named 'initials'
+		select concat_ws('_',left(first_name,1),left(last_name,1)) as initials from director;

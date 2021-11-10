@@ -1,0 +1,27 @@
+-- Database: movie_data_clone
+
+-- DROP DATABASE movie_data_clone;
+
+CREATE DATABASE movie_data_clone
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+	
+	
+-- 1	use substring function to retrive the 1st 6 character of each movie name and year they released
+		select substring(movie_name,1,6) as movie_name,substring(release_date::text,1,4) as released_year from movie;
+
+-- 2	retrive 1st name initial and last name of every actor born in May
+		select substring(first_name,1,1) as fn_initial,last_name,dob from actor
+		where split_part(dob::text,'-',2) = '05';
+
+-- 3	replace movie language for all english language movie, with age certificate rating 18, to 'Eng'
+		update movie
+		set movie_lang = replace(movie_lang,'English','Eng')
+		where age_certification = '18';
+		
+		select * from movie;
