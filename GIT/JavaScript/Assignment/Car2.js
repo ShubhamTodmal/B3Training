@@ -7,6 +7,20 @@ const overlay = document.querySelector('.overlay');
 const submit = document.querySelector('.submit');
 const searchData = document.querySelector('.modal2');
 
+//validation
+const model = document.getElementById('model');
+const car = document.getElementById('car');
+const engine = document.getElementById('engine');
+const m = document.getElementById('m');
+
+const val = function(a,b,c,d)
+{
+    if (a == '') model.innerText='Please Enter Model Number!';
+    if (b == '') car.innerText='Please Enter Car Name!';
+    if (c == '') engine.innerText='Please Enter Engine Type!';
+    if (d == '') m.innerText='Please Enter Milage!';
+}
+
 // open form 
 newentry.addEventListener('click',function(){
     openform();
@@ -20,12 +34,13 @@ overlay.addEventListener('click',function(){
     document.getElementById('carname').value = '';
     document.getElementById('companyname').value = ''
     document.getElementById('Etype').value = '';
-    document.getElementById('milage').value = ''
+    document.getElementById('milage').value = '';
+    model.innerText='';car.innerText='';engine.innerText='';m.innerText='';
 });
 
 window.onload = () =>{
-    // localStorage.Item('carinfo',JSON.stringify(carinfo));
-    showData();
+     //localStorage.Item('carinfo',JSON.stringify(carinfo));
+    showData(JSON.parse(localStorage.getItem('carinfo')),false,0);
  }
 
 // data maipulation
@@ -42,7 +57,7 @@ function manageData()
 
     if(modelno=='' || carname=='' || Etype=='' || milage== '')
     {
-        return 0;
+        val(modelno,carname,Etype,milage);
     }
     else
     {
@@ -53,6 +68,7 @@ function manageData()
             {
                 let data = [[modelno,carname,companyname,Etype,milage]];;
                 setData(data);
+                showData(data);
                 showmsg('Data Added!');
             }
             else{
@@ -62,14 +78,14 @@ function manageData()
                 if(modelno == arr[k][0])
                 {
                    add = true;
-                   msg =`Dont Enter Same Model Number <br> Please Enter Unique Model Number!`;
-                   showmsg(msg);
+                   model.innerText='Enter Unique Model No.!';
                     break;
                 }
                 }
                 if(add == false){
                     arr.push([modelno,carname,companyname,Etype,milage]);
                     setData(arr);
+                    showData(arr);
                     showmsg('Data Added!');
                 }
             }
@@ -79,26 +95,34 @@ function manageData()
             arr[id][0] = modelno; arr[id][1]= carname; arr[id][2] = companyname;
             arr[id][3] = Etype; arr[id][4] = milage;
             setData(arr);
+            showData(arr);
             showmsg('Data Updated!');
         }
        
     }
-    showData();
     
 }
 
 //Select data
-function showData()
+function showData(arr,sort=false,k=0)
 {
-    let arr = getData();
-    if(arr!=null)
+    let newArr;
+    if(k === 2)
+        {newArr = sort ? arr.sort() : arr;}
+    if(k === 1)
+        {newArr = sort ?  arr.sort((a,b) => a[1] < b[1] ? -1:1) : arr;}
+    if(k === 0)
+        {
+            newArr = arr;
+        }
+    if(newArr!=null)
     {
         let html = '';
         let sno = 1;
         table.innerHTML = '';
-        for(let k in arr)
+        for(let k in newArr)
         {
-            html += `<tr><td>${sno}</td> <td>${arr[k][0]}</td> <td>${arr[k][1]}</td> <td>${arr[k][2]}</td> <td>${arr[k][3]}</td> <td>${arr[k][4]}</td> <td><button onclick="editData(${k})">📝</button><button onclick="deleteData(${k})">🗑</button></td></tr>`;
+            html += `<tr><td>${sno}</td> <td>${newArr[k][0]}</td> <td>${newArr[k][1]}</td> <td>${newArr[k][2]}</td> <td>${newArr[k][3]}</td> <td>${newArr[k][4]}</td> <td><button onclick="editData(${k})">📝</button><button onclick="deleteData(${k})">🗑</button></td></tr>`;
             sno++;
         }
         table.innerHTML = html;
@@ -131,7 +155,7 @@ function deleteData(rid)
     {
         arr.splice(rid,1);
         setData(arr);
-        showData();
+        showData(arr);
         searchData.innerHTML = `Data Deleted!`;
         overlay.classList.remove('hidden'); 
         searchData.classList.remove('hidden');
@@ -147,51 +171,82 @@ function search()
 {
     let arr = getData();
     s = document.querySelector('.search').value;
-    console.log(s);
-    let html = '';
-    let addhtml = '';
-    searchData.innerHTML = '';
+   // console.log(s);
+    //let html = '';
+    //let addhtml = '';
+    let narr = []
+   // searchData.innerHTML = '';
     for(k in arr)
     {
         if(s == arr[k][0])
         {
-            console.log(arr[k]);
-            document.querySelector('.search').value = '';
-            addhtml += searchHtml(html,arr);
+            narr = [arr[k]];
+            showData(narr);
+           // addhtml += searchHtml(html,arr);
             
             
             
         }
-        else if(s == arr[k][1]){
-            console.log(arr[k]);
-            document.querySelector('.search').value = '';
-            addhtml += searchHtml(html,arr);
+        else if(arr[k][1].includes(s))
+        {
+            narr.push(arr[k]);
+            console.log(narr);
+            showData(narr);
+           // addhtml += searchHtml(html,arr);
         }    
     }
-    searchData.innerHTML = addhtml;
-    document.querySelector('.search').value='';
-    overlay.classList.remove('hidden'); 
-    searchData.classList.remove('hidden');
+    //searchData.innerHTML = addhtml;
+   // overlay.classList.remove('hidden'); 
+    //searchData.classList.remove('hidden');
+    if(document.querySelector('.search').value === '')
+    {
+        showData(arr);
+        narr = [];
+    }
 
 }
 
 // Sort Data
 // Name Sort
+let sorted = false;
 function SortByName()
 {
     let arr = getData();
-    arr.sort(sortName);
-    setData(arr);
-    showData();
+    //arr.sort(function(a,b){
+     //  return a[1] < b[1] ? -1:1;
+    //});
+    //instead call callback function we have
+    //arr.sort()//for string we not need any extra or
+    //arr.sort((a,b) => a- b)//for ascending b-a for dscending
+    //arr.sort((a,b) => a[1] - b[1])
+    //setData(arr);
+    showData(arr,!sorted,1);
+    sorted = !sorted;
 }
+/*const sortName = function(a,b)
+{
+    if(a[1] === b[1])
+    {
+        return 0;
+    }
+    else{
+        return (a[1] < b[1]) ? -1:1;
+    }
+}*/
+
+
 // Model No sort
 function SortByModelNo()
 {
     let arr = getData();
-    arr.sort(sortModelNo);
-    setData(arr);
-    showData();
+    //arr.sort();
+    showData(arr,!sorted,2);
+    sorted = !sorted;
 }
+
+
+
+
 
 // repeated statment
 function getData()
@@ -228,25 +283,3 @@ function openform()
     overlay.classList.remove('hidden');
 }
 
-// sorting function
-const sortName = function(a,b)
-{
-    if(a[1] === b[1])
-    {
-        return 0;
-    }
-    else{
-        return (a[1] < b[1]) ? -1:1;
-    }
-}
-
-const sortModelNo = function(a,b)
-{
-    if(a[0] === b[0])
-    {
-        return 0;
-    }
-    else{
-        return (a[0] < b[0]) ? -1:1;
-    }
-}

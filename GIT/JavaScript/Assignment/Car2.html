@@ -16,11 +16,8 @@
         <div><button class="button col-lg-2" style="left: 40%;height: 40px;">new Entry</button></div><br>
         
         <div class="nav">
-          <button class="btn btn-outline-success col-lg-1" type="submit" style="left: 50%;" onclick="search()">Search</button>
-          <input class="col-lg-2 search" type="search" placeholder=" Model No./Car Name" aria-label="Search" style="left: 50%; height: 40px;">
-          <label style="background-color: black; color: blanchedalmond; width: 2%;">Sort:</label>
-          <button onclick="SortByModelNo()">Model no</button>
-          <button onclick="SortByName()">Car Name</button>
+          <input class="col-lg-2 search" type="search" placeholder=" Model No./Car Name" aria-label="Search" style="left: 25%; height: 40px;" onkeyup="search()">
+         
         </div>
 
         
@@ -28,8 +25,8 @@
            <thead>
                 <tr>
                   <th>Sr no.</th>
-                <th>Model No</th>
-                <th>Car Name</th>
+                <th>Model No <span class="btn arrow down"  onclick="SortByModelNo()"></span></th>
+                <th>Car Name  <span class="btn arrow down"  onclick="SortByName()"></span></th>
                 <th>Company Name</th>
                 <th>Engine Type</th>
                 <th>Milage</th>
@@ -45,24 +42,27 @@
              <form id="carform1">
               <div class="mb-3">
                 <label>Model No:</label><span class="position-absolute top-0"style="color: red;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="text"  id="modelno" placeholder="AB48" required>
+                  <input type="number"  id="modelno" placeholder="AB48" required>
+                  <span style="color: red;" id = "model"></span>
               </div>
               <div class="mb-3">
                 <label>Car Name:</label><span class="position-absolute top-0"style="color: red;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <input type="text"  id="carname" placeholder="Swift" required>
+                  <span style="color: red;" id = "car"></span>
               </div>
               <div class="mb-3">
                 <label>Company Name:</label>&nbsp;&nbsp;
                   <input type="text" id="companyname" placeholder="Mahindra">
-                  
               </div>
               <div class="mb-3">
                 <label >Engine Type:</label><span class="position-absolute top-0"style="color: red;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="text" id="Etype" placeholder="petrol,diesel" required>
+                <span style="color: red;" id = "engine"></span>
               </div>
               <div class="mb-3">
                 <label>Milage:</label><span class="position-absolute top-0"style="color: red;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <input type="Number" id="milage" placeholder="30km\l" required>
+                  <span style="color: red;" id = "m"></span>
               </div>
 
              
