@@ -25,8 +25,14 @@
            <thead>
                 <tr>
                   <th>Sr no.</th>
-                <th>Model No <span class="btn arrow down"  onclick="SortByModelNo()"></span></th>
-                <th>Car Name  <span class="btn arrow down"  onclick="SortByName()"></span></th>
+                <th>Model No <span class="btn arrow down" id="m_asc" onclick="SortData(this.id)"></span>
+                  <span class="btn arrow up" id="m_desc" onclick="SortData(this.id)"></span>
+                </th>
+
+                <th>Car Name  <span class="btn arrow down" id="c_asc" onclick="SortData(this.id)"></span>
+                  <span class="btn arrow up" id="c_desc" onclick="SortData(this.id)"></span>
+                </th>
+
                 <th>Company Name</th>
                 <th>Engine Type</th>
                 <th>Milage</th>
