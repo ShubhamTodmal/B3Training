@@ -1,0 +1,7 @@
+AJAX = Asynchronous JavaScript and XML
+CSS = Cacscading Style Sheet
+HTML = Hyper Text Markup Language
+PHP = PHP Hypertext Prepocessor
+SQL = Structutred Query Language
+SVG = Scalable Vector graphics
+XML = EXtensible Markup Lnaguage
