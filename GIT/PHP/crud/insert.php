@@ -1,8 +1,8 @@
 <?php
 
 
-	include_once 'crud.php';
-	//include_once 'form.php';
+	include_once 'fetch.php';
+	include_once 'edit.php';
 
 	$modelno=$carname=$coname=$milage=$msg=$id='';
 	//insert and update data
@@ -30,7 +30,6 @@
 						update($id,$modelno,$carname,$coname,$milage);
 						$msg = "Data Updated!";
 						header("location:form.php");
-						$id = '';
 					}
 			    }	
 			}

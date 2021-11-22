@@ -1,9 +1,10 @@
 <?php
     //include_once 'crud.php';
     include_once 'insert.php';
+    //include_once 'edit.php';
 
          
-        if(isset($_GET['id']))
+        /*if(isset($_GET['id']))
         {
          $id = $_GET['id'];
            $s = fetchData($id);
@@ -19,8 +20,14 @@
                 $c = '';
                 $co = '';
                 $m = '';
-        }
-       
+        }*/
+        if(isset($_GET['id']))
+        {
+            $id = $_GET['id'];
+            $val = edit($id); 
+            //update($id,$modelno,$carname,$coname,$milage);
+            
+        }else {$val=['','','',''];}    
       
 ?>
 
@@ -44,43 +51,44 @@
             <ul style="list-style:none;">
 
             <li>Car Model No.:</li>
-            <li><input onchange="formValidation(this.id)" type="number" name="mno" id="mno" value="<?php echo $mo;?>">
+            <li><input onchange="formValidation(this.id)" type="number" name="mno" id="mno" value="<?php echo $val[0];?>">
             <span style="color: red;" id = "mnov">*</span></li>
             
 
             <li>Car Name:</li>
-            <li><input onchange="formValidation(this.id)" type="text" name="cname" id="cname"  value="<?php echo $c;?>" >
+            <li><input onchange="formValidation(this.id)" type="text" name="cname" id="cname"  value="<?php echo $val[1];?>" >
             <span style="color: red;" id = "cnamev">*</span></li>
             
             <li>Company name:</li>
-            <li><input type="text" name="coname" id="coname"  value="<?php echo $co?>" ></li>
+            <li><input type="text" name="coname" id="coname"  value="<?php echo $val[2];?>" ></li>
             
             <li>Milage:</li>
-            <li><input onchange="formValidation(this.id)" type="number" name="milage" id="milage"  value="<?php echo $m;?>" >
+            <li><input onchange="formValidation(this.id)" type="number" name="milage" id="milage"  value="<?php echo $val[3];?>" >
             <span style="color: red;" id = "milagev">*</span></li>
             
             <li><input type="submit" name="send"></li>
 
         </form>
-        <br><br>
-        <form action="search.php" method="post">
-        <li>Search:</li>
-        <li><input type="search" name="search" id="search"></li>
-        <li><input type="submit" name="find" value="Search"></li>
-        </form>
-    </ul>
+    
             <span class="text-danger"><?php echo $msg;?></span>
-    </div>
+    
+    <br><br>
+    </ul>
+    <form action="form.php" action="post">
+        <input type="search" name="search">
+        <input type="submit" name="find">
+    </form>
+</div>
 
         
 
 
-        <div class="col-lg-8" style="padding-left: 10%">
+       <!-- <div class="col-lg-8" style="padding-left: 10%">
         <table class="table table-striped table-bordered">
             <thead>
                 <tr class="bg-dark text-white text-center">
                     <th>Sr. No.</th>
-                    <th>Car Model No.</th>
+                    <th>Car Model No.<button class="btn" name="sort">^</button></th>
                     <th>Car Name</th>
                     <th>Company Name</th>
                     <th>Milage</th>
@@ -89,7 +97,16 @@
             </thead>
             <tbody>
                 <?php
-                    $s = fetchData();
+                    if(!isset($_POST['sort']))
+                    {
+                         $s = fetchData();
+                    }
+                    else if(isset($_POST['sort']))
+                    {
+                       $s = "select * from car order by id";
+                    }
+                   
+                    
                     while ($show = pg_fetch_array($s)) {
                      
                 ?>
@@ -106,7 +123,8 @@
             <?php }?>
             </tbody>
         </table>
-        </div>
+        </div>-->
+        <?php  include_once 'display.php'; ?>
     </row>
 
 

@@ -1,6 +1,6 @@
 <?php
 
-	include_once 'crud.php';
+	include_once 'fetch.php';
 
 	$id = $_GET['id'];
 
