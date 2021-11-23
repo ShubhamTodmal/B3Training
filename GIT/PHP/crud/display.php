@@ -22,11 +22,11 @@
                         // $sql = "select * from car order by ".$order; 
                         if($order == 'modelno')
                         {
-                            $s = sortModel();  
+                            $s = sortbym();  
                         }
                         if($order == 'carname')
                         {
-                            $s = sortCar();
+                            $s = sortbyc();
                         }
                         //echo $order;
                      }
@@ -36,16 +36,16 @@
                         $order = $_GET['search'];
                         if($order == '')
                         {
-                              $s = fetchData();
+                              $s = fetch();
                         }
                         else{
-                            $sql = "select * from car where modelno= ".$order;
-                            $s = pg_query($sql);
+                            //$sql = "select * from car where modelno= ".$order;
+                            $s = fetch($order);
                         }
                      }
                      else
                      {
-                            $s = fetchData();
+                            $s = fetch();
                     }
                             
                     while ($show = pg_fetch_array($s)) {

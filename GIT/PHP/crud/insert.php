@@ -23,6 +23,7 @@
 			    	{
 			        	insert($modelno,$carname,$coname,$milage);
 			        	$msg = "Data Added!";
+			        	header("location:form.php");
 
 			    	}
 					else

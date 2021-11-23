@@ -1,26 +1,7 @@
 <?php
-    //include_once 'crud.php';
+    
     include_once 'insert.php';
-    //include_once 'edit.php';
-
-         
-        /*if(isset($_GET['id']))
-        {
-         $id = $_GET['id'];
-           $s = fetchData($id);
-        $show = pg_fetch_array($s);
-            $mo = $show['modelno'];
-            $c = $show['carname'];
-            $co = $show['companyname'];
-            $m = $show['milage'];
-        }
-        if($id == '')
-        {   
-             $mo = '';
-                $c = '';
-                $co = '';
-                $m = '';
-        }*/
+    
         if(isset($_GET['id']))
         {
             $id = $_GET['id'];
@@ -80,50 +61,6 @@
     </form>
 </div>
 
-        
-
-
-       <!-- <div class="col-lg-8" style="padding-left: 10%">
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr class="bg-dark text-white text-center">
-                    <th>Sr. No.</th>
-                    <th>Car Model No.<button class="btn" name="sort">^</button></th>
-                    <th>Car Name</th>
-                    <th>Company Name</th>
-                    <th>Milage</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    if(!isset($_POST['sort']))
-                    {
-                         $s = fetchData();
-                    }
-                    else if(isset($_POST['sort']))
-                    {
-                       $s = "select * from car order by id";
-                    }
-                   
-                    
-                    while ($show = pg_fetch_array($s)) {
-                     
-                ?>
-                    <tr class="text-center">
-                    <td><?php echo $show['id']; ?></td>
-                    <td><?php echo $show['modelno']; ?></td>
-                    <td><?php echo $show['carname']; ?></td>
-                    <td><?php echo $show['companyname']; ?></td>
-                    <td><?php echo $show['milage']; ?></td>
-                    <td><button class="btn-danger btn"><a href="delete.php?id=<?php echo $show['id'];?>">🗑</a></button>
-                        <button class="btn-info btn" name="edit"><a href="form.php?id=<?php echo $show['id'];?>">📝</a></button>
-                    </td>
-                </tr>
-            <?php }?>
-            </tbody>
-        </table>
-        </div>-->
         <?php  include_once 'display.php'; ?>
     </row>
 

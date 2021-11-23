@@ -1,21 +1,6 @@
 <?php
 
 
-
-		// connection and create table
-	/*function connect($conn)
-	{
-		$sql =<<<EOF
-					create table car(id serial primary key, modelno int unique, carname varchar(20), companyname varchar(20), milage int);
-		EOF;
-		$exe = pg_query($conn,$sql);
-		if($exe)
-		{
-			echo "table created";
-		}else pg_last_error($conn);
-	}*/
-
-
 	// insert data query
 	function insert($a,$b,$c,$d)
 	{
@@ -30,14 +15,6 @@
 
 	}
 
-	/*	$sql =<<<EOF
-					insert into car(modelno,carname,companyname,milage) values($modelno,'$cname','$coname',$milage);
-			EOF;
-			$exe = pg_query($sql);
-			if($exe)
-			{
-				echo "Data added";
-			}else "error";*/
 
 
 
@@ -71,7 +48,7 @@
 		else
 		{
 			$sql =<<<EOF
-						select * from car where id= $id;
+						select * from car where modelno= $id;
 			EOF;
 			$ret = pg_query($sql);
 		}
