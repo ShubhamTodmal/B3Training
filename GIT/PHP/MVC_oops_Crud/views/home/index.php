@@ -15,12 +15,21 @@
                 <tr>
                     <th class="text-center">Sr. No.</th>
                     <th class="text-center">Car Model No.
-                        <a class="text-right" href="<?php echo ROOT_PATH;?>home/index/<?php echo $sort[0];?>">⬇</a>
-                        <a class="text-right" href="<?php echo ROOT_PATH;?>home/index/<?php echo $sort[1];?>">⬆</a>
+                        <!-- <a class="text-right" href="<?php //echo ROOT_PATH;?>home/index/<?php// echo $sort[0];?>">⬇</a>
+                        <a class="text-right" href="<?php //echo ROOT_PATH;?>home/index/<?php// echo $sort[1];?>">⬆</a> -->
+                        <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
+                            <input type="submit" class="btn-link text-right" name="sortM" value="⬇">
+                            <input type="submit" class="btn-link text-right" name="sortM" value="⬆">
+                        </form>
+                        
                     </th>
                     <th class="text-center">Car Name
-                        <a class="text-right" href="<?php echo ROOT_PATH;?>home/index/<?php echo $sort[2];?>">⬇</a>
-                        <a class="text-right" href="<?php echo ROOT_PATH;?>home/index/<?php echo $sort[3];?>">⬆</a>
+                       <!--  <a class="text-right" href="<?php //echo ROOT_PATH;?>home/index/<?php// echo $sort[2];?>">⬇</a>
+                        <a class="text-right" href="<?php //echo ROOT_PATH;?>home/index/<?php// echo $sort[3];?>">⬆</a> -->
+                         <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
+                            <input type="submit" class="btn-link text-right" name="sortC" value="⬇">
+                            <input type="submit" class="btn-link text-right" name="sortC" value="⬆">
+                        </form>
                     </th>
                     <th class="text-center">Company Name</th>
                     <th class="text-center">Car Type</th>

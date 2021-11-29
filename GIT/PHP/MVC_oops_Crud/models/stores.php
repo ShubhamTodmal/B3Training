@@ -74,7 +74,8 @@
 							header("location:".ROOT_URL);
 						}
 					}else{
-						$post['modelno']=$post['carname']=$post['company']=$post['ctype']=$post['milage']=null;
+						$post['modelno']=$post['carname']=$post['company']=$post['ctype']='';
+						$post['milage']=0;
 						return $post;
 					}
 				}
