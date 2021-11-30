@@ -58,15 +58,23 @@
 							Message::setMsg("Please Fill All Fields!","error");
 							return;
 						}
-						// insert into share table
-						$this->query("insert into cars(modelno,carname,company,ctype,milage) values(:modelno,:carname,:company,:ctype,:milage)");
-						$this->bind(":modelno",$post['modelno']);
-						$this->bind(":carname",$post['carname']);
-						$this->bind(":company",$post['company']);
-						$this->bind(":ctype",$post['ctype']);
-						$this->bind(":milage",$post['milage']);
-						$this->execute();
 
+						$image = $_FILES['photo'] ?? null;
+						$dir = 'images/';
+						$destination = $dir.$image['name'];
+						//$dir = 'images/'.$post['carname'].'/'.$image['name']; mkdir(dirname('$dir'));
+						if($image && move_uploaded_file($image['tmp_name'], $destination))
+						{
+							// insert into share table
+							$this->query("insert into cars(modelno,carname,company,ctype,milage,photos) values(:modelno,:carname,:company,:ctype,:milage,:photos)");
+							$this->bind(":modelno",$post['modelno']);
+							$this->bind(":carname",$post['carname']);
+							$this->bind(":company",$post['company']);
+							$this->bind(":ctype",$post['ctype']);
+							$this->bind(":milage",$post['milage']);
+							$this->bind(":photos",$destination);
+							$this->execute();
+						}
 						//verify execute
 						if($this->lastInsertId()){
 							// redirect
@@ -75,7 +83,7 @@
 						}
 					}else{
 						$post['modelno']=$post['carname']=$post['company']=$post['ctype']='';
-						$post['milage']=0;
+						$post['milage']=null;
 						return $post;
 					}
 				}
