@@ -24,10 +24,12 @@
     		<label>Car Milage:</label>
     		<input type="number" name="milage" class="form-control" value="<?php echo $viewmodel['milage'];?>">
     	</div>
-        <div class="form-group">
-            <label>Car Foto:</label>
-            <input type="file" name="photo" class="form-control">
-        </div>
+        <?php if(empty($viewmodel['id'])): ?>
+            <div class="form-group">
+                <label>Car Foto:</label>
+                <input type="file" name="photo" class="form-control">
+            </div>
+        <?php endif; ?>
 
     	<input type="submit" name="submit" class="btn btn-primary" value="submit">
     	<a class="btn btn-danger" href='<?php echo ROOT_PATH; ?>'>Cancel</a>
